@@ -9,22 +9,22 @@ const Landing = () => (
       {/* Hero */}
       <section className="container py-20 md:py-32">
         <div className="max-w-3xl mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium animate-fade-in opacity-0" style={{ animationDelay: "0.1s" }}>
             <Zap className="h-3 w-3" />
             Live Data · 16 Jobs Tracked
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display leading-tight animate-fade-in-up opacity-0" style={{ animationDelay: "0.2s" }}>
             The Future of Work,{" "}
             <span className="text-gradient-primary">Quantified</span>
           </h1>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed animate-fade-in-up opacity-0" style={{ animationDelay: "0.35s" }}>
             Track how AI is reshaping every profession. See real-time impact scores,
             automation risk levels, and demand trends — all in one place.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4 animate-fade-in-up opacity-0" style={{ animationDelay: "0.5s" }}>
             <Link
               to="/dashboard"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold shadow-glow hover:opacity-90 transition-opacity"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold shadow-glow hover:opacity-90 transition-all duration-200 hover:scale-105"
             >
               Explore Dashboard
               <ArrowRight className="h-4 w-4" />
@@ -52,10 +52,11 @@ const Landing = () => (
               title: "Automation Risk",
               desc: "Understand which roles face high, medium, or low automation threat.",
             },
-          ].map((f) => (
+          ].map((f, i) => (
             <div
               key={f.title}
-              className="bg-gradient-card rounded-xl border border-border/50 p-6 hover:shadow-glow transition-all duration-300 group"
+              className="bg-gradient-card rounded-xl border border-border/50 p-6 hover:shadow-glow transition-all duration-300 group hover:scale-[1.02] animate-fade-in-up opacity-0"
+              style={{ animationDelay: `${0.6 + i * 0.15}s` }}
             >
               <div className="p-2.5 rounded-lg bg-primary/10 w-fit mb-4 group-hover:bg-primary/20 transition-colors">
                 <f.icon className="h-5 w-5 text-primary" />
@@ -68,7 +69,7 @@ const Landing = () => (
       </section>
     </main>
 
-    <footer className="border-t border-border/50 py-8">
+    <footer className="border-t border-border/50 py-8 animate-fade-in opacity-0" style={{ animationDelay: "1.1s" }}>
       <div className="container text-center text-xs text-muted-foreground">
         © 2026 FutureWork Index. Data is illustrative.
       </div>
