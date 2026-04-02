@@ -39,13 +39,13 @@ const JobDetail = () => {
     <div className="min-h-screen">
       <Navbar />
       <main className="container py-8 max-w-3xl space-y-8">
-        <Link to="/dashboard" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <Link to="/dashboard" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors animate-fade-in opacity-0" style={{ animationDelay: "0.1s" }}>
           <ArrowLeft className="h-4 w-4" />
           Back to Dashboard
         </Link>
 
         {/* Header */}
-        <div className="space-y-2">
+        <div className="space-y-2 animate-fade-in-up opacity-0" style={{ animationDelay: "0.2s" }}>
           <div className="flex items-center gap-3 flex-wrap">
             <span className="font-mono text-primary text-sm font-semibold bg-primary/10 px-2.5 py-1 rounded-md">
               {job.ticker}
@@ -56,7 +56,7 @@ const JobDetail = () => {
         </div>
 
         {/* Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-in-up opacity-0" style={{ animationDelay: "0.35s" }}>
           <div className="bg-gradient-card rounded-xl border border-border/50 p-4 space-y-1">
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Brain className="h-3.5 w-3.5" />
@@ -107,7 +107,7 @@ const JobDetail = () => {
         </div>
 
         {/* Summary */}
-        <div className="bg-gradient-card rounded-xl border border-border/50 p-6">
+        <div className="bg-gradient-card rounded-xl border border-border/50 p-6 animate-fade-in-up opacity-0" style={{ animationDelay: "0.5s" }}>
           <div className="flex items-center gap-2 mb-3">
             <BarChart3 className="h-4 w-4 text-primary" />
             <h2 className="font-display font-semibold text-sm">Analysis</h2>
