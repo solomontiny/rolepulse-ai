@@ -1,0 +1,79 @@
+import { Link } from "react-router-dom";
+import { ArrowRight, Zap, Brain, Shield } from "lucide-react";
+import Navbar from "@/components/Navbar";
+
+const Landing = () => (
+  <div className="min-h-screen">
+    <Navbar />
+    <main>
+      {/* Hero */}
+      <section className="container py-20 md:py-32">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+            <Zap className="h-3 w-3" />
+            Live Data · 16 Jobs Tracked
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display leading-tight">
+            The Future of Work,{" "}
+            <span className="text-gradient-primary">Quantified</span>
+          </h1>
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
+            Track how AI is reshaping every profession. See real-time impact scores,
+            automation risk levels, and demand trends — all in one place.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
+            <Link
+              to="/dashboard"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold shadow-glow hover:opacity-90 transition-opacity"
+            >
+              Explore Dashboard
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="container pb-20 md:pb-32">
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            {
+              icon: Brain,
+              title: "AI Impact Scoring",
+              desc: "Every role scored 0-100 on how much AI is transforming the field.",
+            },
+            {
+              icon: Zap,
+              title: "Demand Trends",
+              desc: "Track whether job demand is rising, stable, or declining over time.",
+            },
+            {
+              icon: Shield,
+              title: "Automation Risk",
+              desc: "Understand which roles face high, medium, or low automation threat.",
+            },
+          ].map((f) => (
+            <div
+              key={f.title}
+              className="bg-gradient-card rounded-xl border border-border/50 p-6 hover:shadow-glow transition-all duration-300 group"
+            >
+              <div className="p-2.5 rounded-lg bg-primary/10 w-fit mb-4 group-hover:bg-primary/20 transition-colors">
+                <f.icon className="h-5 w-5 text-primary" />
+              </div>
+              <h3 className="font-display font-semibold mb-2">{f.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <footer className="border-t border-border/50 py-8">
+      <div className="container text-center text-xs text-muted-foreground">
+        © 2026 FutureWork Index. Data is illustrative.
+      </div>
+    </footer>
+  </div>
+);
+
+export default Landing;
