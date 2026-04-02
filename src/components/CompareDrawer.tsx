@@ -47,7 +47,7 @@ const CompareDrawer = ({ jobs, onClose }: CompareDrawerProps) => {
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-card border border-border rounded-t-2xl sm:rounded-2xl w-full sm:max-w-2xl max-h-[85vh] overflow-y-auto p-6 space-y-4">
+      <div className="relative bg-card border border-border rounded-t-2xl sm:rounded-2xl w-full sm:max-w-2xl max-h-[85vh] overflow-y-auto p-6 space-y-4 animate-slide-in-bottom">
         <div className="flex items-center justify-between">
           <h2 className="font-display font-bold text-lg">Compare Jobs</h2>
           <button onClick={onClose} className="p-1.5 rounded-md hover:bg-muted transition-colors">
