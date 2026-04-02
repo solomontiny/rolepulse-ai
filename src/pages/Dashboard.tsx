@@ -1,14 +1,18 @@
 import { useState, useMemo } from "react";
-import { Search, Briefcase, Brain, TrendingUp, AlertTriangle } from "lucide-react";
+import { Search, Briefcase, Brain, TrendingUp, AlertTriangle, GitCompareArrows } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import StatCard from "@/components/StatCard";
 import CategoryFilter from "@/components/CategoryFilter";
 import JobsTable from "@/components/JobsTable";
+import DashboardCharts from "@/components/DashboardCharts";
+import CompareDrawer from "@/components/CompareDrawer";
 import { jobs } from "@/data/jobs";
 
 const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+  const [compareSelected, setCompareSelected] = useState<string[]>([]);
+  const [showCompare, setShowCompare] = useState(false);
 
   const filtered = useMemo(() => {
     return jobs.filter((j) => {
@@ -23,6 +27,14 @@ const Dashboard = () => {
   const avgImpact = Math.round(jobs.reduce((a, j) => a + j.aiImpactScore, 0) / jobs.length);
   const risingCount = jobs.filter((j) => j.demandTrend === "rising").length;
   const highRiskCount = jobs.filter((j) => j.automationRisk === "high").length;
+
+  const toggleCompare = (ticker: string) => {
+    setCompareSelected((prev) =>
+      prev.includes(ticker) ? prev.filter((t) => t !== ticker) : prev.length < 2 ? [...prev, ticker] : prev
+    );
+  };
+
+  const compareJobs = compareSelected.map((t) => jobs.find((j) => j.ticker === t)!).filter(Boolean);
 
   return (
     <div className="min-h-screen">
@@ -41,24 +53,41 @@ const Dashboard = () => {
           <StatCard icon={AlertTriangle} label="High Risk" value={highRiskCount} trend="roles at risk" />
         </div>
 
-        {/* Filters */}
+        {/* Charts */}
+        <DashboardCharts />
+
+        {/* Filters + Compare */}
         <div className="space-y-4">
-          <div className="relative max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Search jobs or tickers…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 rounded-lg bg-muted/50 border border-border/50 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
-            />
+          <div className="flex flex-col sm:flex-row gap-3 sm:items-center justify-between">
+            <div className="relative max-w-sm flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search jobs or tickers…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-9 pr-4 py-2.5 rounded-lg bg-muted/50 border border-border/50 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
+              />
+            </div>
+            <button
+              onClick={() => setShowCompare(true)}
+              disabled={compareSelected.length !== 2}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed bg-primary text-primary-foreground hover:opacity-90 shadow-glow"
+            >
+              <GitCompareArrows className="h-4 w-4" />
+              Compare {compareSelected.length > 0 && `(${compareSelected.length}/2)`}
+            </button>
           </div>
           <CategoryFilter selected={category} onChange={setCategory} />
         </div>
 
         {/* Table */}
-        <JobsTable jobs={filtered} />
+        <JobsTable jobs={filtered} compareSelected={compareSelected} onToggleCompare={toggleCompare} />
       </main>
+
+      {showCompare && compareJobs.length === 2 && (
+        <CompareDrawer jobs={compareJobs} onClose={() => setShowCompare(false)} />
+      )}
     </div>
   );
 };
