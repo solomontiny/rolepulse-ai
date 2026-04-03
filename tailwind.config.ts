@@ -13,7 +13,7 @@ export default {
       },
     },
     fontFamily: {
-      sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+      sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
       mono: ['"JetBrains Mono"', 'monospace'],
     },
     extend: {
@@ -21,6 +21,10 @@ export default {
         success: {
           DEFAULT: "hsl(var(--success))",
           foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

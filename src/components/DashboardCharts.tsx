@@ -6,21 +6,23 @@ import {
 import { jobs } from "@/data/jobs";
 
 const COLORS = {
-  primary: "hsl(185, 72%, 48%)",
-  accent: "hsl(38, 92%, 58%)",
-  destructive: "hsl(0, 72%, 55%)",
-  success: "hsl(152, 60%, 45%)",
-  muted: "hsl(215, 12%, 50%)",
+  primary: "hsl(252, 70%, 57%)",
+  accent: "hsl(172, 62%, 42%)",
+  destructive: "hsl(0, 68%, 56%)",
+  success: "hsl(152, 55%, 42%)",
+  warning: "hsl(38, 92%, 52%)",
+  muted: "hsl(224, 12%, 48%)",
 };
 
-const PIE_COLORS = [COLORS.primary, COLORS.accent, COLORS.destructive];
+const PIE_COLORS = [COLORS.success, COLORS.warning, COLORS.destructive];
 
 const customTooltipStyle = {
-  backgroundColor: "hsl(220, 18%, 10%)",
-  border: "1px solid hsl(220, 14%, 18%)",
-  borderRadius: "8px",
+  backgroundColor: "hsl(0, 0%, 100%)",
+  border: "1px solid hsl(225, 15%, 89%)",
+  borderRadius: "12px",
   fontSize: "12px",
-  color: "hsl(210, 20%, 92%)",
+  color: "hsl(224, 30%, 12%)",
+  boxShadow: "0 4px 16px -2px rgba(0,0,0,0.08)",
 };
 
 const DashboardCharts = () => {
@@ -53,23 +55,23 @@ const DashboardCharts = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {/* Bar chart */}
-      <div className="bg-gradient-card rounded-xl border border-border/50 p-5">
-        <h3 className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-4">
+      <div className="bg-card rounded-2xl border border-border p-5 shadow-card">
+        <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground font-bold mb-4">
           Avg AI Exposure by Category
         </h3>
-        <ResponsiveContainer width="100%" height={220}>
+        <ResponsiveContainer width="100%" height={260}>
           <BarChart data={categoryData} layout="vertical" margin={{ left: 0, right: 8 }}>
-            <XAxis type="number" domain={[0, 100]} tick={{ fill: "hsl(215,12%,50%)", fontSize: 10 }} axisLine={false} tickLine={false} />
-            <YAxis type="category" dataKey="name" tick={{ fill: "hsl(210,20%,80%)", fontSize: 11 }} axisLine={false} tickLine={false} width={80} />
-            <Tooltip contentStyle={customTooltipStyle} cursor={{ fill: "hsl(220,14%,14%)" }} />
-            <Bar dataKey="avgExposure" fill={COLORS.primary} radius={[0, 4, 4, 0]} barSize={14} />
+            <XAxis type="number" domain={[0, 100]} tick={{ fill: "hsl(224,12%,48%)", fontSize: 10 }} axisLine={false} tickLine={false} />
+            <YAxis type="category" dataKey="name" tick={{ fill: "hsl(224,30%,12%)", fontSize: 11, fontWeight: 500 }} axisLine={false} tickLine={false} width={80} />
+            <Tooltip contentStyle={customTooltipStyle} cursor={{ fill: "hsl(225,18%,93%)" }} />
+            <Bar dataKey="avgExposure" fill={COLORS.primary} radius={[0, 6, 6, 0]} barSize={14} />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       {/* Pie chart */}
-      <div className="bg-gradient-card rounded-xl border border-border/50 p-5">
-        <h3 className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-4">
+      <div className="bg-card rounded-2xl border border-border p-5 shadow-card">
+        <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground font-bold mb-4">
           Automation Level Distribution
         </h3>
         <ResponsiveContainer width="100%" height={220}>
@@ -86,23 +88,23 @@ const DashboardCharts = () => {
           {riskData.map((d, i) => (
             <div key={d.name} className="flex items-center gap-1.5 text-xs">
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PIE_COLORS[i] }} />
-              <span className="text-muted-foreground">{d.name} ({d.value})</span>
+              <span className="text-muted-foreground font-medium">{d.name} ({d.value})</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Radar chart */}
-      <div className="bg-gradient-card rounded-xl border border-border/50 p-5">
-        <h3 className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-4">
+      <div className="bg-card rounded-2xl border border-border p-5 shadow-card">
+        <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground font-bold mb-4">
           Category Exposure Radar
         </h3>
         <ResponsiveContainer width="100%" height={220}>
           <RadarChart data={radarData} cx="50%" cy="50%" outerRadius={70}>
-            <PolarGrid stroke="hsl(220,14%,18%)" />
-            <PolarAngleAxis dataKey="category" tick={{ fill: "hsl(210,20%,80%)", fontSize: 9 }} />
+            <PolarGrid stroke="hsl(225,15%,89%)" />
+            <PolarAngleAxis dataKey="category" tick={{ fill: "hsl(224,30%,12%)", fontSize: 9, fontWeight: 500 }} />
             <PolarRadiusAxis tick={false} axisLine={false} domain={[0, 100]} />
-            <Radar dataKey="exposure" stroke={COLORS.primary} fill={COLORS.primary} fillOpacity={0.2} strokeWidth={2} />
+            <Radar dataKey="exposure" stroke={COLORS.primary} fill={COLORS.primary} fillOpacity={0.15} strokeWidth={2} />
           </RadarChart>
         </ResponsiveContainer>
       </div>

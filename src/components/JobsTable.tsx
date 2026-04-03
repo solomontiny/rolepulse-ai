@@ -11,12 +11,12 @@ const trendIcon = (trend: Job["demandTrend"]) => {
 
 const riskBadge = (risk: Job["automationRisk"]) => {
   const styles = {
-    low: "bg-success/15 text-success",
-    medium: "bg-accent/15 text-accent",
-    high: "bg-destructive/15 text-destructive",
+    low: "bg-success/10 text-success",
+    medium: "bg-warning/10 text-warning",
+    high: "bg-destructive/10 text-destructive",
   };
   return (
-    <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider ${styles[risk]}`}>
+    <span className={`px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider ${styles[risk]}`}>
       {risk}
     </span>
   );
@@ -24,16 +24,16 @@ const riskBadge = (risk: Job["automationRisk"]) => {
 
 const ImpactBar = ({ score }: { score: number }) => (
   <div className="flex items-center gap-2">
-    <div className="w-16 h-1.5 rounded-full bg-muted overflow-hidden">
+    <div className="w-16 h-2 rounded-full bg-muted overflow-hidden">
       <div
         className="h-full rounded-full transition-all duration-500"
         style={{
           width: `${score}%`,
-          background: score > 75 ? "hsl(var(--destructive))" : score > 50 ? "hsl(var(--accent))" : "hsl(var(--success))",
+          background: score > 75 ? "hsl(var(--destructive))" : score > 50 ? "hsl(var(--warning))" : "hsl(var(--success))",
         }}
       />
     </div>
-    <span className="font-mono text-xs text-muted-foreground">{score}</span>
+    <span className="font-mono text-xs font-semibold text-foreground">{score}</span>
   </div>
 );
 
@@ -86,18 +86,18 @@ const JobsTable = ({ jobs, compareSelected = [], onToggleCompare }: JobsTablePro
   }, [jobs, sortKey, sortDir]);
 
   const SortIcon = ({ col }: { col: SortKey }) => {
-    if (sortKey !== col) return <ArrowUpDown className="h-3 w-3 opacity-40" />;
+    if (sortKey !== col) return <ArrowUpDown className="h-3 w-3 opacity-30" />;
     return sortDir === "asc" ? <ArrowUp className="h-3 w-3 text-primary" /> : <ArrowDown className="h-3 w-3 text-primary" />;
   };
 
-  const thClass = "text-left p-3 font-medium text-muted-foreground text-xs uppercase tracking-wider cursor-pointer hover:text-foreground transition-colors select-none";
+  const thClass = "text-left p-3.5 font-semibold text-muted-foreground text-[11px] uppercase tracking-wider cursor-pointer hover:text-foreground transition-colors select-none";
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-border/50">
+    <div className="overflow-x-auto rounded-2xl border border-border bg-card shadow-card">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-border/50 bg-muted/30">
-            {onToggleCompare && <th className="p-3 w-10"></th>}
+          <tr className="border-b border-border bg-secondary/40">
+            {onToggleCompare && <th className="p-3.5 w-10"></th>}
             <th className={thClass} onClick={() => handleSort("ticker")}>
               <span className="inline-flex items-center gap-1">Ticker <SortIcon col="ticker" /></span>
             </th>
@@ -114,38 +114,40 @@ const JobsTable = ({ jobs, compareSelected = [], onToggleCompare }: JobsTablePro
             <th className={`${thClass} hidden sm:table-cell`} onClick={() => handleSort("automationRisk")}>
               <span className="inline-flex items-center gap-1">Auto Level <SortIcon col="automationRisk" /></span>
             </th>
-            <th className="p-3"></th>
+            <th className="p-3.5"></th>
           </tr>
         </thead>
         <tbody>
           {sorted.map((job) => (
-            <tr key={job.ticker} className="border-b border-border/30 hover:bg-muted/20 transition-colors">
+            <tr key={job.ticker} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
               {onToggleCompare && (
-                <td className="p-3">
+                <td className="p-3.5">
                   <input
                     type="checkbox"
                     checked={compareSelected.includes(job.ticker)}
                     onChange={() => onToggleCompare(job.ticker)}
                     disabled={!compareSelected.includes(job.ticker) && compareSelected.length >= 2}
-                    className="accent-[hsl(185,72%,48%)] h-3.5 w-3.5 cursor-pointer"
+                    className="accent-primary h-4 w-4 cursor-pointer rounded"
                   />
                 </td>
               )}
-              <td className="p-3 font-mono font-semibold text-primary">{job.ticker}</td>
-              <td className="p-3 font-medium">{job.title}</td>
-              <td className="p-3 text-muted-foreground hidden md:table-cell">{job.category}</td>
-              <td className="p-3 hidden sm:table-cell"><ImpactBar score={job.aiImpactScore} /></td>
-              <td className="p-3 hidden lg:table-cell">
+              <td className="p-3.5 font-mono font-bold text-primary text-xs">{job.ticker}</td>
+              <td className="p-3.5 font-semibold">{job.title}</td>
+              <td className="p-3.5 text-muted-foreground hidden md:table-cell">
+                <span className="bg-secondary px-2 py-0.5 rounded-md text-xs">{job.category}</span>
+              </td>
+              <td className="p-3.5 hidden sm:table-cell"><ImpactBar score={job.aiImpactScore} /></td>
+              <td className="p-3.5 hidden lg:table-cell">
                 <div className="flex items-center gap-1.5">
                   {trendIcon(job.demandTrend)}
-                  <span className="capitalize text-xs">{job.demandTrend}</span>
+                  <span className="capitalize text-xs font-medium">{job.demandTrend}</span>
                 </div>
               </td>
-              <td className="p-3 hidden sm:table-cell">{riskBadge(job.automationRisk)}</td>
-              <td className="p-3">
+              <td className="p-3.5 hidden sm:table-cell">{riskBadge(job.automationRisk)}</td>
+              <td className="p-3.5">
                 <Link
                   to={`/job/${job.ticker}`}
-                  className="p-1.5 rounded-md hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors inline-flex"
+                  className="p-2 rounded-lg hover:bg-primary/8 text-muted-foreground hover:text-primary transition-all inline-flex"
                 >
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>

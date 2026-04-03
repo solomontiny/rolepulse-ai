@@ -37,21 +37,21 @@ const Dashboard = () => {
   const compareJobs = compareSelected.map((t) => jobs.find((j) => j.ticker === t)!).filter(Boolean);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
       <main className="container py-8 space-y-8 flex-1">
         <div className="animate-fade-in opacity-0" style={{ animationDelay: "0.1s" }}>
-          <h1 className="text-2xl font-bold font-display">Dashboard</h1>
-          <p className="text-muted-foreground text-sm mt-1">AI exposure across the labor market</p>
+          <h1 className="text-2xl font-extrabold font-display tracking-tight">Dashboard</h1>
+          <p className="text-muted-foreground text-sm mt-1">AI exposure, automation levels & demand shifts across the labor market</p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { icon: Briefcase, label: "Jobs Tracked", value: jobs.length },
-            { icon: Brain, label: "Avg AI Exposure", value: avgImpact, trend: "across all roles" },
-            { icon: TrendingUp, label: "Rising Demand", value: risingCount, trend: `of ${jobs.length} roles`, trendUp: true },
-            { icon: AlertTriangle, label: "High Automation", value: highRiskCount, trend: "roles at risk" },
+            { icon: Briefcase, label: "Jobs Tracked", value: jobs.length, color: "bg-primary/8 text-primary" },
+            { icon: Brain, label: "Avg AI Exposure", value: avgImpact, trend: "across all roles", color: "bg-purple-100 text-purple-600" },
+            { icon: TrendingUp, label: "Rising Demand", value: risingCount, trend: `of ${jobs.length} roles`, trendUp: true, color: "bg-success/10 text-success" },
+            { icon: AlertTriangle, label: "High Automation", value: highRiskCount, trend: "roles at risk", color: "bg-destructive/10 text-destructive" },
           ].map((s, i) => (
             <div key={s.label} className="animate-fade-in-up opacity-0" style={{ animationDelay: `${0.15 + i * 0.1}s` }}>
               <StatCard {...s} />
@@ -74,13 +74,13 @@ const Dashboard = () => {
                 placeholder="Search jobs or tickers…"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 rounded-lg bg-muted/50 border border-border/50 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all"
+                className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-card border border-border text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 transition-all shadow-sm"
               />
             </div>
             <button
               onClick={() => setShowCompare(true)}
               disabled={compareSelected.length !== 2}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all disabled:opacity-30 disabled:cursor-not-allowed bg-primary text-primary-foreground hover:opacity-90 shadow-glow hover:scale-105"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed bg-primary text-primary-foreground hover:opacity-90 shadow-glow hover:scale-[1.03]"
             >
               <GitCompareArrows className="h-4 w-4" />
               Compare {compareSelected.length > 0 && `(${compareSelected.length}/2)`}
@@ -95,9 +95,9 @@ const Dashboard = () => {
         </div>
       </main>
 
-      <footer className="border-t border-border/50 py-6">
+      <footer className="border-t border-border py-6">
         <div className="container text-center">
-          <p className="text-[10px] text-muted-foreground/60">This is a prototype using sample data for illustrative purposes only.</p>
+          <p className="text-[11px] text-muted-foreground/70">Prototype using sample data for future-of-work exploration.</p>
         </div>
       </footer>
 
