@@ -8,6 +8,9 @@ export interface Job {
   summary: string;
   avgSalary: string;
   growthRate: string;
+  skillsToStayRelevant: string[];
+  recommendedAITools: string[];
+  careerOutlook: string;
 }
 
 export const categories = [
@@ -20,6 +23,7 @@ export const categories = [
   "Education",
   "Trades",
   "Legal",
+  "Support",
 ] as const;
 
 export const jobs: Job[] = [
@@ -33,6 +37,9 @@ export const jobs: Job[] = [
     summary: "Designs and optimizes prompts for large language models. A new role born from the AI revolution, combining linguistics, psychology, and technical skills to extract maximum value from AI systems.",
     avgSalary: "$145K",
     growthRate: "+340%",
+    skillsToStayRelevant: ["Advanced prompt design patterns", "Fine-tuning & RLHF", "Evaluation frameworks", "Domain-specific prompt libraries"],
+    recommendedAITools: ["ChatGPT", "Claude", "LangChain", "PromptLayer"],
+    careerOutlook: "Explosive growth expected through 2030 as enterprises scale AI adoption. Specialization in regulated industries (healthcare, finance) will command premium salaries.",
   },
   {
     ticker: "MLOP",
@@ -44,6 +51,9 @@ export const jobs: Job[] = [
     summary: "Manages the lifecycle of machine learning models in production. Bridges the gap between data science and DevOps, ensuring AI models are deployed, monitored, and maintained at scale.",
     avgSalary: "$165K",
     growthRate: "+180%",
+    skillsToStayRelevant: ["Model monitoring & observability", "Feature stores", "CI/CD for ML pipelines", "Cost optimization"],
+    recommendedAITools: ["MLflow", "Kubeflow", "Weights & Biases", "SageMaker"],
+    careerOutlook: "Strong demand as organizations move from AI experimentation to production. Platform engineering skills increasingly valued alongside ML knowledge.",
   },
   {
     ticker: "RBNR",
@@ -55,6 +65,9 @@ export const jobs: Job[] = [
     summary: "Operates robotic surgical systems and AI-assisted diagnostic tools. Combines traditional nursing expertise with cutting-edge technology to deliver precision healthcare.",
     avgSalary: "$98K",
     growthRate: "+85%",
+    skillsToStayRelevant: ["Robotic surgical system operation", "AI diagnostics interpretation", "Patient data analytics", "Telehealth coordination"],
+    recommendedAITools: ["da Vinci Surgical System", "Viz.ai", "Aidoc", "Nuance DAX"],
+    careerOutlook: "Growing steadily as hospitals invest in surgical robotics and AI diagnostics. Rural and underserved areas will see highest demand for tech-savvy nurses.",
   },
   {
     ticker: "DETH",
@@ -66,6 +79,9 @@ export const jobs: Job[] = [
     summary: "Ensures responsible use of AI and data across organizations. Navigates the complex intersection of technology, privacy, and societal impact.",
     avgSalary: "$155K",
     growthRate: "+120%",
+    skillsToStayRelevant: ["AI governance frameworks", "Bias auditing", "Regulatory compliance (EU AI Act)", "Stakeholder communication"],
+    recommendedAITools: ["IBM AI Fairness 360", "Google What-If Tool", "Fiddler AI", "Arthur AI"],
+    careerOutlook: "Regulatory pressure (EU AI Act, state laws) is creating mandatory demand. Expect this to become a C-suite adjacent role at most large enterprises by 2028.",
   },
   {
     ticker: "QCMP",
@@ -77,6 +93,9 @@ export const jobs: Job[] = [
     summary: "Develops algorithms and applications for quantum computers. Pushes the boundaries of computational possibility in cryptography, drug discovery, and optimization.",
     avgSalary: "$185K",
     growthRate: "+95%",
+    skillsToStayRelevant: ["Quantum error correction", "Hybrid quantum-classical algorithms", "Quantum machine learning", "Post-quantum cryptography"],
+    recommendedAITools: ["Qiskit", "Cirq", "PennyLane", "Amazon Braket"],
+    careerOutlook: "Niche but accelerating. Practical quantum advantage expected in specific domains by 2028-2030, driving demand for applied researchers.",
   },
   {
     ticker: "CYBR",
@@ -88,6 +107,9 @@ export const jobs: Job[] = [
     summary: "Protects organizations from cyber threats using AI-powered tools. As attack surfaces grow with AI adoption, defense expertise becomes increasingly critical.",
     avgSalary: "$120K",
     growthRate: "+65%",
+    skillsToStayRelevant: ["AI-powered threat detection", "Cloud security architecture", "Incident response automation", "Zero trust implementation"],
+    recommendedAITools: ["CrowdStrike Falcon", "Darktrace", "Splunk SOAR", "Microsoft Copilot for Security"],
+    careerOutlook: "Perennial shortage of talent keeps salaries rising. AI both augments defenders and creates new attack vectors, ensuring long-term job security.",
   },
   {
     ticker: "SLAR",
@@ -99,6 +121,9 @@ export const jobs: Job[] = [
     summary: "Installs and maintains solar energy systems. Physical, skilled work that resists automation while benefiting from growing renewable energy demand.",
     avgSalary: "$55K",
     growthRate: "+52%",
+    skillsToStayRelevant: ["Battery storage integration", "Smart grid connectivity", "Drone-based panel inspection", "EV charger installation"],
+    recommendedAITools: ["Aurora Solar", "Helioscope", "SolarEdge monitoring", "DroneDeploy"],
+    careerOutlook: "Policy tailwinds and falling costs drive consistent growth. One of the most automation-resistant roles with strong upward salary trajectory.",
   },
   {
     ticker: "ACNT",
@@ -110,6 +135,9 @@ export const jobs: Job[] = [
     summary: "Manages financial records and prepares reports. Traditional accounting tasks face significant automation pressure from AI-powered bookkeeping and analysis tools.",
     avgSalary: "$65K",
     growthRate: "-15%",
+    skillsToStayRelevant: ["AI-assisted auditing", "Strategic financial advisory", "Data visualization", "Regulatory technology"],
+    recommendedAITools: ["QuickBooks AI", "Xero", "Dext", "Botkeeper"],
+    careerOutlook: "Routine bookkeeping roles shrinking fast. Accountants who pivot to advisory, compliance, and strategic finance will thrive; others face displacement.",
   },
   {
     ticker: "XRDS",
@@ -121,6 +149,9 @@ export const jobs: Job[] = [
     summary: "Creates immersive experiences for augmented and virtual reality platforms. Blends spatial design, storytelling, and human-computer interaction.",
     avgSalary: "$130K",
     growthRate: "+110%",
+    skillsToStayRelevant: ["Spatial computing design", "3D asset creation with AI", "Haptic feedback design", "Accessibility in XR"],
+    recommendedAITools: ["Unity Muse", "Unreal Engine AI", "Adobe Substance 3D", "Meshy"],
+    careerOutlook: "Apple Vision Pro and Meta Quest are accelerating enterprise and consumer XR adoption. Designers who master spatial interfaces will be in high demand.",
   },
   {
     ticker: "TRNL",
@@ -132,6 +163,9 @@ export const jobs: Job[] = [
     summary: "Translates written and spoken content between languages. AI translation tools have dramatically reshaped this profession, though nuanced cultural translation remains human-driven.",
     avgSalary: "$52K",
     growthRate: "-25%",
+    skillsToStayRelevant: ["Post-editing machine translation", "Cultural localization", "Specialized domain expertise", "AI translation quality assurance"],
+    recommendedAITools: ["DeepL", "Google Translate API", "memoQ", "Smartcat"],
+    careerOutlook: "General translation work is rapidly commoditized. Specialists in legal, medical, and literary translation retain value. Expect consolidation in the field.",
   },
   {
     ticker: "AITR",
@@ -143,6 +177,9 @@ export const jobs: Job[] = [
     summary: "Prepares and labels training data for machine learning models. Essential but evolving role as synthetic data and self-supervised learning advance.",
     avgSalary: "$58K",
     growthRate: "+20%",
+    skillsToStayRelevant: ["Complex annotation methodologies", "Quality assurance for AI data", "Domain expertise", "Synthetic data validation"],
+    recommendedAITools: ["Scale AI", "Labelbox", "Snorkel AI", "V7"],
+    careerOutlook: "Volume of work remains high but per-task value declining. Specialists in complex, high-stakes annotation (medical, legal) will see sustained demand.",
   },
   {
     ticker: "PLMB",
@@ -154,6 +191,9 @@ export const jobs: Job[] = [
     summary: "Installs and repairs plumbing systems. Highly resistant to automation due to physical dexterity requirements and varied work environments.",
     avgSalary: "$62K",
     growthRate: "+8%",
+    skillsToStayRelevant: ["Smart home plumbing systems", "Water conservation tech", "Digital diagnostics tools", "Green building codes"],
+    recommendedAITools: ["ServiceTitan", "Housecall Pro", "FLIR thermal imaging", "PlanSwift"],
+    careerOutlook: "Aging workforce and steady housing demand create reliable opportunities. Apprenticeship pipeline remains strong with good earning potential.",
   },
   {
     ticker: "EDTC",
@@ -165,6 +205,9 @@ export const jobs: Job[] = [
     summary: "Designs AI-enhanced learning experiences and curricula. Combines pedagogy with technology to create adaptive, personalized education pathways.",
     avgSalary: "$88K",
     growthRate: "+45%",
+    skillsToStayRelevant: ["Adaptive learning design", "AI tutoring integration", "Learning analytics", "Inclusive curriculum design"],
+    recommendedAITools: ["Khan Academy AI", "Coursera AI tools", "Articulate 360", "Synthesia"],
+    careerOutlook: "EdTech investment continues growing. Designers who can blend AI personalization with sound pedagogy are increasingly sought after by K-12 and corporate learning.",
   },
   {
     ticker: "GNTH",
@@ -176,6 +219,9 @@ export const jobs: Job[] = [
     summary: "Helps patients understand genetic test results and make informed health decisions. AI augments analysis but human empathy and counseling remain irreplaceable.",
     avgSalary: "$95K",
     growthRate: "+38%",
+    skillsToStayRelevant: ["AI-powered genomic analysis", "Telegenetics", "Pharmacogenomics", "Patient communication"],
+    recommendedAITools: ["Illumina DRAGEN", "Fabric Genomics", "Emedgene", "Genoox"],
+    careerOutlook: "Expanding access to genetic testing drives demand. Telehealth delivery models opening rural markets. One of the most human-centered healthcare roles.",
   },
   {
     ticker: "DTRK",
@@ -187,6 +233,9 @@ export const jobs: Job[] = [
     summary: "Transports goods across long distances. Autonomous vehicle technology poses significant disruption, though last-mile and complex-route driving may persist longer.",
     avgSalary: "$55K",
     growthRate: "-30%",
+    skillsToStayRelevant: ["Autonomous vehicle monitoring", "Fleet management software", "Last-mile logistics", "Hazmat certification"],
+    recommendedAITools: ["Samsara", "KeepTruckin", "Waymo Via", "TuSimple"],
+    careerOutlook: "Highway autonomy advancing faster than expected. Transition period will create hybrid roles (remote monitoring). Last-mile and specialty hauling more resilient.",
   },
   {
     ticker: "FINA",
@@ -198,5 +247,78 @@ export const jobs: Job[] = [
     summary: "Leverages AI tools for personalized financial planning and portfolio management. Combines algorithmic insights with human relationship management.",
     avgSalary: "$110K",
     growthRate: "+55%",
+    skillsToStayRelevant: ["AI-driven portfolio analysis", "Behavioral finance", "Regulatory compliance tech", "Client relationship management"],
+    recommendedAITools: ["Wealthfront", "Betterment Pro", "Bloomberg Terminal AI", "Morningstar Direct"],
+    careerOutlook: "Robo-advisors handle routine allocation, but complex planning (tax, estate, business) keeps human advisors essential. Hybrid model is the future.",
+  },
+  {
+    ticker: "FEDEV",
+    title: "Frontend Developer",
+    category: "Technology",
+    aiImpactScore: 78,
+    demandTrend: "stable",
+    automationRisk: "medium",
+    summary: "Builds user interfaces and web experiences using modern frameworks. AI coding assistants are reshaping workflows, but creative problem-solving and UX intuition remain distinctly human.",
+    avgSalary: "$125K",
+    growthRate: "+12%",
+    skillsToStayRelevant: ["AI-assisted development workflows", "Design systems & component architecture", "Performance optimization", "Accessibility (WCAG)"],
+    recommendedAITools: ["GitHub Copilot", "Cursor", "v0 by Vercel", "Lovable"],
+    careerOutlook: "Demand remains steady but the bar is rising. Developers who leverage AI tools effectively will outperform those who don't. Full-stack fluency increasingly expected.",
+  },
+  {
+    ticker: "ITSP",
+    title: "IT Support Specialist",
+    category: "Technology",
+    aiImpactScore: 75,
+    demandTrend: "stable",
+    automationRisk: "high",
+    summary: "Provides technical support and troubleshooting for hardware, software, and network issues. AI chatbots and automated diagnostics are handling an increasing share of tier-1 support tickets.",
+    avgSalary: "$58K",
+    growthRate: "-8%",
+    skillsToStayRelevant: ["Cloud infrastructure management", "AI tool administration", "Cybersecurity basics", "Vendor management"],
+    recommendedAITools: ["Freshdesk AI", "ServiceNow Virtual Agent", "Zendesk AI", "Microsoft Copilot"],
+    careerOutlook: "Tier-1 support roles shrinking due to AI automation. Specialists who move into cloud ops, security, or AI tool administration will find stronger prospects.",
+  },
+  {
+    ticker: "PDSG",
+    title: "Product Designer",
+    category: "Creative",
+    aiImpactScore: 65,
+    demandTrend: "rising",
+    automationRisk: "low",
+    summary: "Shapes digital product experiences through research, prototyping, and visual design. AI accelerates production tasks but strategic design thinking remains irreplaceable.",
+    avgSalary: "$135K",
+    growthRate: "+28%",
+    skillsToStayRelevant: ["AI-augmented design workflows", "Design systems at scale", "User research synthesis", "Prototyping with generative AI"],
+    recommendedAITools: ["Figma AI", "Midjourney", "Galileo AI", "Uizard"],
+    careerOutlook: "Strong demand as digital products multiply. Designers who wield AI as a creative multiplier — not a crutch — will command top salaries and leadership roles.",
+  },
+  {
+    ticker: "HRCR",
+    title: "HR Coordinator",
+    category: "Support",
+    aiImpactScore: 72,
+    demandTrend: "declining",
+    automationRisk: "high",
+    summary: "Manages employee onboarding, benefits administration, and HR operations. Routine HR tasks are rapidly being automated by AI-powered platforms.",
+    avgSalary: "$52K",
+    growthRate: "-12%",
+    skillsToStayRelevant: ["HR analytics & people data", "AI recruitment tools", "Employee experience design", "DEI program management"],
+    recommendedAITools: ["Workday AI", "BambooHR", "HireVue", "Eightfold AI"],
+    careerOutlook: "Administrative HR roles declining as platforms automate. Pivoting toward strategic HR — talent development, culture, DEI — offers much stronger career trajectory.",
+  },
+  {
+    ticker: "CSSP",
+    title: "Customer Support Specialist",
+    category: "Support",
+    aiImpactScore: 88,
+    demandTrend: "declining",
+    automationRisk: "high",
+    summary: "Handles customer inquiries, complaints, and service requests. AI chatbots now resolve the majority of routine support interactions, compressing the human support workforce.",
+    avgSalary: "$42K",
+    growthRate: "-22%",
+    skillsToStayRelevant: ["Complex escalation handling", "AI chatbot training & QA", "Customer success strategy", "Technical product expertise"],
+    recommendedAITools: ["Intercom Fin", "Zendesk AI", "Ada", "Forethought"],
+    careerOutlook: "Volume-based support roles face the steepest decline. Transition to customer success, technical support, or AI chatbot management for better long-term prospects.",
   },
 ];

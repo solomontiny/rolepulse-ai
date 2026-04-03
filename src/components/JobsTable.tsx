@@ -106,13 +106,13 @@ const JobsTable = ({ jobs, compareSelected = [], onToggleCompare }: JobsTablePro
             </th>
             <th className={`${thClass} hidden md:table-cell`}>Category</th>
             <th className={`${thClass} hidden sm:table-cell`} onClick={() => handleSort("aiImpactScore")}>
-              <span className="inline-flex items-center gap-1">AI Impact <SortIcon col="aiImpactScore" /></span>
+              <span className="inline-flex items-center gap-1">AI Exposure <SortIcon col="aiImpactScore" /></span>
             </th>
             <th className={`${thClass} hidden lg:table-cell`} onClick={() => handleSort("demandTrend")}>
-              <span className="inline-flex items-center gap-1">Trend <SortIcon col="demandTrend" /></span>
+              <span className="inline-flex items-center gap-1">Direction <SortIcon col="demandTrend" /></span>
             </th>
             <th className={`${thClass} hidden sm:table-cell`} onClick={() => handleSort("automationRisk")}>
-              <span className="inline-flex items-center gap-1">Risk <SortIcon col="automationRisk" /></span>
+              <span className="inline-flex items-center gap-1">Auto Level <SortIcon col="automationRisk" /></span>
             </th>
             <th className="p-3"></th>
           </tr>

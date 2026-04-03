@@ -32,8 +32,8 @@ const DashboardCharts = () => {
       map[j.category].totalImpact += j.aiImpactScore;
     });
     return Object.entries(map)
-      .map(([name, d]) => ({ name, avgImpact: Math.round(d.totalImpact / d.count), count: d.count }))
-      .sort((a, b) => b.avgImpact - a.avgImpact);
+      .map(([name, d]) => ({ name, avgExposure: Math.round(d.totalImpact / d.count), count: d.count }))
+      .sort((a, b) => b.avgExposure - a.avgExposure);
   }, []);
 
   const riskData = useMemo(() => {
@@ -47,7 +47,7 @@ const DashboardCharts = () => {
   }, []);
 
   const radarData = useMemo(() => {
-    return categoryData.map((c) => ({ category: c.name, impact: c.avgImpact }));
+    return categoryData.map((c) => ({ category: c.name, exposure: c.avgExposure }));
   }, [categoryData]);
 
   return (
@@ -55,14 +55,14 @@ const DashboardCharts = () => {
       {/* Bar chart */}
       <div className="bg-gradient-card rounded-xl border border-border/50 p-5">
         <h3 className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-4">
-          Avg AI Impact by Category
+          Avg AI Exposure by Category
         </h3>
         <ResponsiveContainer width="100%" height={220}>
           <BarChart data={categoryData} layout="vertical" margin={{ left: 0, right: 8 }}>
             <XAxis type="number" domain={[0, 100]} tick={{ fill: "hsl(215,12%,50%)", fontSize: 10 }} axisLine={false} tickLine={false} />
             <YAxis type="category" dataKey="name" tick={{ fill: "hsl(210,20%,80%)", fontSize: 11 }} axisLine={false} tickLine={false} width={80} />
             <Tooltip contentStyle={customTooltipStyle} cursor={{ fill: "hsl(220,14%,14%)" }} />
-            <Bar dataKey="avgImpact" fill={COLORS.primary} radius={[0, 4, 4, 0]} barSize={14} />
+            <Bar dataKey="avgExposure" fill={COLORS.primary} radius={[0, 4, 4, 0]} barSize={14} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -70,7 +70,7 @@ const DashboardCharts = () => {
       {/* Pie chart */}
       <div className="bg-gradient-card rounded-xl border border-border/50 p-5">
         <h3 className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-4">
-          Automation Risk Distribution
+          Automation Level Distribution
         </h3>
         <ResponsiveContainer width="100%" height={220}>
           <PieChart>
@@ -95,14 +95,14 @@ const DashboardCharts = () => {
       {/* Radar chart */}
       <div className="bg-gradient-card rounded-xl border border-border/50 p-5">
         <h3 className="text-xs uppercase tracking-wider text-muted-foreground font-medium mb-4">
-          Category Impact Radar
+          Category Exposure Radar
         </h3>
         <ResponsiveContainer width="100%" height={220}>
           <RadarChart data={radarData} cx="50%" cy="50%" outerRadius={70}>
             <PolarGrid stroke="hsl(220,14%,18%)" />
             <PolarAngleAxis dataKey="category" tick={{ fill: "hsl(210,20%,80%)", fontSize: 9 }} />
             <PolarRadiusAxis tick={false} axisLine={false} domain={[0, 100]} />
-            <Radar dataKey="impact" stroke={COLORS.primary} fill={COLORS.primary} fillOpacity={0.2} strokeWidth={2} />
+            <Radar dataKey="exposure" stroke={COLORS.primary} fill={COLORS.primary} fillOpacity={0.2} strokeWidth={2} />
           </RadarChart>
         </ResponsiveContainer>
       </div>
