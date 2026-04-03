@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { TrendingUp, LayoutDashboard, Zap } from "lucide-react";
+import { Activity, LayoutDashboard, Zap } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
@@ -9,8 +9,8 @@ const Navbar = () => {
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 font-display font-bold text-lg">
           <Zap className="h-5 w-5 text-primary" />
-          <span className="text-gradient-primary">FutureWork</span>
-          <span className="text-muted-foreground font-normal text-sm hidden sm:inline">Index</span>
+          <span className="text-gradient-primary">RolePulse</span>
+          <span className="text-muted-foreground font-normal text-sm hidden sm:inline">AI</span>
         </Link>
         <div className="flex items-center gap-1">
           <Link
@@ -21,7 +21,7 @@ const Navbar = () => {
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            <TrendingUp className="h-4 w-4 sm:hidden" />
+            <Activity className="h-4 w-4 sm:hidden" />
             <span className="hidden sm:inline">Home</span>
           </Link>
           <Link

@@ -37,21 +37,21 @@ const Dashboard = () => {
   const compareJobs = compareSelected.map((t) => jobs.find((j) => j.ticker === t)!).filter(Boolean);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="container py-8 space-y-8">
+      <main className="container py-8 space-y-8 flex-1">
         <div className="animate-fade-in opacity-0" style={{ animationDelay: "0.1s" }}>
           <h1 className="text-2xl font-bold font-display">Dashboard</h1>
-          <p className="text-muted-foreground text-sm mt-1">AI impact across the labor market</p>
+          <p className="text-muted-foreground text-sm mt-1">AI exposure across the labor market</p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             { icon: Briefcase, label: "Jobs Tracked", value: jobs.length },
-            { icon: Brain, label: "Avg AI Impact", value: avgImpact, trend: "across all roles" },
+            { icon: Brain, label: "Avg AI Exposure", value: avgImpact, trend: "across all roles" },
             { icon: TrendingUp, label: "Rising Demand", value: risingCount, trend: `of ${jobs.length} roles`, trendUp: true },
-            { icon: AlertTriangle, label: "High Risk", value: highRiskCount, trend: "roles at risk" },
+            { icon: AlertTriangle, label: "High Automation", value: highRiskCount, trend: "roles at risk" },
           ].map((s, i) => (
             <div key={s.label} className="animate-fade-in-up opacity-0" style={{ animationDelay: `${0.15 + i * 0.1}s` }}>
               <StatCard {...s} />
@@ -94,6 +94,12 @@ const Dashboard = () => {
           <JobsTable jobs={filtered} compareSelected={compareSelected} onToggleCompare={toggleCompare} />
         </div>
       </main>
+
+      <footer className="border-t border-border/50 py-6">
+        <div className="container text-center">
+          <p className="text-[10px] text-muted-foreground/60">This is a prototype using sample data for illustrative purposes only.</p>
+        </div>
+      </footer>
 
       {showCompare && compareJobs.length === 2 && (
         <CompareDrawer jobs={compareJobs} onClose={() => setShowCompare(false)} />

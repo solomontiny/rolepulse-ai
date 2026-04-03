@@ -1,4 +1,4 @@
-import { X, Brain, Shield, TrendingUp, TrendingDown, Minus, DollarSign, BarChart3 } from "lucide-react";
+import { X, Brain, Shield, TrendingUp, TrendingDown, Minus, DollarSign } from "lucide-react";
 import type { Job } from "@/data/jobs";
 
 interface CompareDrawerProps {
@@ -74,12 +74,12 @@ const CompareDrawer = ({ jobs, onClose }: CompareDrawerProps) => {
             <span className="text-sm">{b.category}</span>
           </MetricRow>
 
-          <MetricRow label="AI Impact">
+          <MetricRow label="AI Exposure">
             <ImpactBar score={a.aiImpactScore} />
             <ImpactBar score={b.aiImpactScore} />
           </MetricRow>
 
-          <MetricRow label="Demand">
+          <MetricRow label="Direction">
             {[a, b].map((j) => {
               const t = trendConfig[j.demandTrend];
               const Icon = t.icon;
@@ -92,7 +92,7 @@ const CompareDrawer = ({ jobs, onClose }: CompareDrawerProps) => {
             })}
           </MetricRow>
 
-          <MetricRow label="Auto Risk">
+          <MetricRow label="Auto Level">
             {[a, b].map((j) => {
               const r = riskConfig[j.automationRisk];
               return (

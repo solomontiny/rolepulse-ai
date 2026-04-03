@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, TrendingUp, TrendingDown, Minus, Brain, Shield, DollarSign, BarChart3 } from "lucide-react";
+import { ArrowLeft, TrendingUp, TrendingDown, Minus, Brain, Shield, DollarSign, BarChart3, Lightbulb, Wrench, Compass } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { jobs } from "@/data/jobs";
 
@@ -36,9 +36,9 @@ const JobDetail = () => {
   const TrendIcon = trendConfig[job.demandTrend].icon;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="container py-8 max-w-3xl space-y-8">
+      <main className="container py-8 max-w-3xl space-y-8 flex-1">
         <Link to="/dashboard" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors animate-fade-in opacity-0" style={{ animationDelay: "0.1s" }}>
           <ArrowLeft className="h-4 w-4" />
           Back to Dashboard
@@ -60,7 +60,7 @@ const JobDetail = () => {
           <div className="bg-gradient-card rounded-xl border border-border/50 p-4 space-y-1">
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Brain className="h-3.5 w-3.5" />
-              <span className="text-[10px] uppercase tracking-wider font-medium">AI Impact</span>
+              <span className="text-[10px] uppercase tracking-wider font-medium">AI Exposure</span>
             </div>
             <p className="text-2xl font-bold font-display">{job.aiImpactScore}</p>
             <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
@@ -77,7 +77,7 @@ const JobDetail = () => {
           <div className="bg-gradient-card rounded-xl border border-border/50 p-4 space-y-1">
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <TrendIcon className="h-3.5 w-3.5" />
-              <span className="text-[10px] uppercase tracking-wider font-medium">Demand</span>
+              <span className="text-[10px] uppercase tracking-wider font-medium">Direction</span>
             </div>
             <div className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold capitalize ${trendConfig[job.demandTrend].bg} ${trendConfig[job.demandTrend].color}`}>
               {job.demandTrend}
@@ -87,7 +87,7 @@ const JobDetail = () => {
           <div className="bg-gradient-card rounded-xl border border-border/50 p-4 space-y-1">
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Shield className="h-3.5 w-3.5" />
-              <span className="text-[10px] uppercase tracking-wider font-medium">Auto Risk</span>
+              <span className="text-[10px] uppercase tracking-wider font-medium">Auto Level</span>
             </div>
             <div className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold capitalize ${riskConfig[job.automationRisk].bg} ${riskConfig[job.automationRisk].color}`}>
               {job.automationRisk}
@@ -114,7 +114,53 @@ const JobDetail = () => {
           </div>
           <p className="text-muted-foreground leading-relaxed">{job.summary}</p>
         </div>
+
+        {/* Skills to Stay Relevant */}
+        <div className="bg-gradient-card rounded-xl border border-border/50 p-6 animate-fade-in-up opacity-0" style={{ animationDelay: "0.6s" }}>
+          <div className="flex items-center gap-2 mb-4">
+            <Lightbulb className="h-4 w-4 text-primary" />
+            <h2 className="font-display font-semibold text-sm">Skills to Stay Relevant</h2>
+          </div>
+          <ul className="space-y-2">
+            {job.skillsToStayRelevant.map((skill) => (
+              <li key={skill} className="flex items-start gap-2.5">
+                <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                <span className="text-muted-foreground text-sm leading-relaxed">{skill}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Recommended AI Tools */}
+        <div className="bg-gradient-card rounded-xl border border-border/50 p-6 animate-fade-in-up opacity-0" style={{ animationDelay: "0.7s" }}>
+          <div className="flex items-center gap-2 mb-4">
+            <Wrench className="h-4 w-4 text-primary" />
+            <h2 className="font-display font-semibold text-sm">Recommended AI Tools</h2>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {job.recommendedAITools.map((tool) => (
+              <span key={tool} className="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-primary text-xs font-medium">
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Career Outlook */}
+        <div className="bg-gradient-card rounded-xl border border-border/50 p-6 animate-fade-in-up opacity-0" style={{ animationDelay: "0.8s" }}>
+          <div className="flex items-center gap-2 mb-3">
+            <Compass className="h-4 w-4 text-primary" />
+            <h2 className="font-display font-semibold text-sm">Career Outlook</h2>
+          </div>
+          <p className="text-muted-foreground leading-relaxed">{job.careerOutlook}</p>
+        </div>
       </main>
+
+      <footer className="border-t border-border/50 py-6">
+        <div className="container text-center">
+          <p className="text-[10px] text-muted-foreground/60">This is a prototype using sample data for illustrative purposes only.</p>
+        </div>
+      </footer>
     </div>
   );
 };
