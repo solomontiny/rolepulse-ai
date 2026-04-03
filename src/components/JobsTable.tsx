@@ -109,10 +109,10 @@ const JobsTable = ({ jobs, compareSelected = [], onToggleCompare }: JobsTablePro
               <span className="inline-flex items-center gap-1">AI Exposure <SortIcon col="aiImpactScore" /></span>
             </th>
             <th className={`${thClass} hidden lg:table-cell`} onClick={() => handleSort("demandTrend")}>
-              <span className="inline-flex items-center gap-1">Direction <SortIcon col="demandTrend" /></span>
+              <span className="inline-flex items-center gap-1">Market Direction <SortIcon col="demandTrend" /></span>
             </th>
             <th className={`${thClass} hidden sm:table-cell`} onClick={() => handleSort("automationRisk")}>
-              <span className="inline-flex items-center gap-1">Auto Level <SortIcon col="automationRisk" /></span>
+              <span className="inline-flex items-center gap-1">Automation Level <SortIcon col="automationRisk" /></span>
             </th>
             <th className="p-3.5"></th>
           </tr>

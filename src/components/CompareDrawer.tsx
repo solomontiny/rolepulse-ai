@@ -78,7 +78,7 @@ const CompareDrawer = ({ jobs, onClose }: CompareDrawerProps) => {
             <ImpactBar score={b.aiImpactScore} />
           </MetricRow>
 
-          <MetricRow label="Direction">
+          <MetricRow label="Market Direction">
             {[a, b].map((j) => {
               const t = trendConfig[j.demandTrend];
               const Icon = t.icon;
@@ -91,7 +91,7 @@ const CompareDrawer = ({ jobs, onClose }: CompareDrawerProps) => {
             })}
           </MetricRow>
 
-          <MetricRow label="Auto Level">
+          <MetricRow label="Automation Level">
             {[a, b].map((j) => {
               const r = riskConfig[j.automationRisk];
               return (

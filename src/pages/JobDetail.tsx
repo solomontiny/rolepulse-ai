@@ -77,7 +77,7 @@ const JobDetail = () => {
           <div className="bg-card rounded-2xl border border-border p-5 shadow-card space-y-2">
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <TrendIcon className="h-3.5 w-3.5" />
-              <span className="text-[10px] uppercase tracking-wider font-bold">Direction</span>
+              <span className="text-[10px] uppercase tracking-wider font-bold">Market Direction</span>
             </div>
             <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold capitalize ${trendConfig[job.demandTrend].bg} ${trendConfig[job.demandTrend].color}`}>
               {job.demandTrend}
@@ -87,7 +87,7 @@ const JobDetail = () => {
           <div className="bg-card rounded-2xl border border-border p-5 shadow-card space-y-2">
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <Shield className="h-3.5 w-3.5" />
-              <span className="text-[10px] uppercase tracking-wider font-bold">Auto Level</span>
+              <span className="text-[10px] uppercase tracking-wider font-bold">Automation Level</span>
             </div>
             <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold capitalize ${riskConfig[job.automationRisk].bg} ${riskConfig[job.automationRisk].color}`}>
               {job.automationRisk}
